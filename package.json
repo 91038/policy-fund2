@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cd policy-landing && npm run dev",
-    "build": "npm install --prefix policy-landing && npm run build --prefix policy-landing",
-    "start": "cd policy-landing && npm run start",
-    "lint": "cd policy-landing && npm run lint",
-    "install-deps": "cd policy-landing && npm install"
+    "dev": "cd policy-landing/policy-landing && npm run dev",
+    "build": "npm install --prefix policy-landing/policy-landing && npm run build --prefix policy-landing/policy-landing",
+    "start": "cd policy-landing/policy-landing && npm run start",
+    "lint": "cd policy-landing/policy-landing && npm run lint",
+    "install-deps": "cd policy-landing/policy-landing && npm install"
   },
   "dependencies": {
     "next": "14.2.5",
