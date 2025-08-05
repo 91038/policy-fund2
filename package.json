@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cd policy-landing/policy-landing && npm run dev",
-    "build": "npm install --prefix policy-landing/policy-landing && npm run build --prefix policy-landing/policy-landing",
+    "build": "cd policy-landing/policy-landing && npm install && npm run build",
     "start": "cd policy-landing/policy-landing && npm run start",
     "lint": "cd policy-landing/policy-landing && npm run lint",
     "install-deps": "cd policy-landing/policy-landing && npm install"
