@@ -51,7 +51,7 @@ export default function ApplicationForm({ onSuccess }: ApplicationFormProps) {
         setLoading(false)
         return
       }
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('policy_fund_applications')
         .insert([formData])
 

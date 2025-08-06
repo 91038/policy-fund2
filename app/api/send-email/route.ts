@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,9 +9,9 @@ export async function POST(request: NextRequest) {
     
     const notificationEmail = process.env.NOTIFICATION_EMAIL
     
-    if (!notificationEmail || !process.env.RESEND_API_KEY) {
+    if (!notificationEmail || !process.env.RESEND_API_KEY || !resend) {
       console.error('Email configuration not complete')
-      return NextResponse.json({ success: false, error: 'Email not configured' }, { status: 500 })
+      return NextResponse.json({ success: true, message: 'Email not configured, but application saved' })
     }
 
     const currentDate = new Date().toLocaleString('ko-KR', {
