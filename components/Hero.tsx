@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, CheckCircle, Sparkles, TrendingUp } from 'lucide-react'
+import { ArrowRight, CheckCircle, Sparkles, TrendingUp } from 'lucide-react'
 
 interface HeroProps {
   onConsultClick: () => void
@@ -49,7 +49,7 @@ export default function Hero({ onConsultClick }: HeroProps) {
             ✨ 최대 금리 <span className="font-bold text-yellow-400">1.9%</span> · 최대 <span className="font-bold text-yellow-400">30년</span> 상환
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-fadeInUp animation-delay-1000">
+          <div className="flex justify-center mb-16 animate-fadeInUp animation-delay-1000">
             <button 
               onClick={onConsultClick}
               className="group px-10 py-5 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black rounded-2xl hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1"
@@ -57,13 +57,6 @@ export default function Hero({ onConsultClick }: HeroProps) {
               <span className="text-xl">🚀 무료 상담 신청하기</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
-            <a 
-              href="tel:1688-0000"
-              className="group px-10 py-5 bg-white/10 backdrop-blur-sm text-white font-bold rounded-2xl hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 shadow-2xl transform hover:scale-105 hover:-translate-y-1"
-            >
-              <Phone className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-              <span className="text-xl">📞 전화 상담하기</span>
-            </a>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fadeInUp animation-delay-1500">

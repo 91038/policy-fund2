@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
@@ -15,11 +14,14 @@ const ApplicationForm = dynamic(() => import('@/components/ApplicationForm'), {
 })
 
 export default function Home() {
-  const [showForm, setShowForm] = useState(false)
-
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <Hero onConsultClick={() => setShowForm(true)} />
+      <Hero onConsultClick={() => {
+        const formSection = document.getElementById('consultation-form')
+        if (formSection) {
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }} />
       <Features />
       <Stats />
       <SuccessCases />
@@ -35,22 +37,7 @@ export default function Home() {
       <Footer />
       
       {/* 고정 CTA 버튼 추가 */}
-      <FloatingCTA onConsultClick={() => setShowForm(true)} />
-      
-      {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
-            <button 
-              onClick={() => setShowForm(false)}
-              className="float-right text-gray-500 hover:text-gray-700"
-            >
-              ✕
-            </button>
-            <h3 className="text-2xl font-bold mb-6">무료 상담 신청</h3>
-            <ApplicationForm onSuccess={() => setShowForm(false)} />
-          </div>
-        </div>
-      )}
+      <FloatingCTA />
     </main>
   )
 }

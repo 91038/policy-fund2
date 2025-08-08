@@ -1,13 +1,9 @@
 'use client'
 
-import { Phone, MessageSquare } from 'lucide-react'
+import { MessageSquare } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-interface FloatingCTAProps {
-  onConsultClick: () => void
-}
-
-export default function FloatingCTA({ onConsultClick }: FloatingCTAProps) {
+export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
 
@@ -34,13 +30,6 @@ export default function FloatingCTA({ onConsultClick }: FloatingCTAProps) {
     const formSection = document.getElementById('consultation-form')
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      // 폼 모달 열기
-      setTimeout(() => {
-        onConsultClick()
-      }, 500)
-    } else {
-      // 폼 섹션이 없으면 바로 모달 열기
-      onConsultClick()
     }
   }
 
@@ -72,20 +61,6 @@ export default function FloatingCTA({ onConsultClick }: FloatingCTAProps) {
         </div>
       </button>
 
-      {/* 모바일용 작은 버튼 */}
-      <button
-        onClick={handleClick}
-        className={`fixed bottom-8 left-8 z-40 md:hidden transition-all duration-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="relative">
-          <div className="absolute inset-0 bg-yellow-500 rounded-full animate-ping opacity-75"></div>
-          <div className="w-14 h-14 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300">
-            <Phone className="w-7 h-7 text-black animate-pulse" />
-          </div>
-        </div>
-      </button>
 
       {/* 추가 플로팅 요소 - 왼쪽 상단 알림 */}
       <div 
