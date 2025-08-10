@@ -32,7 +32,7 @@ export default function AdminPage() {
     const password = formData.get('password') as string
 
     // 환경 변수와 비교 (실제 운영시에는 더 안전한 방법 사용)
-    if (username === 'admin' && password === 'admin123') {
+    if (username === 'qkrtmdska23' && password === 'akfqhwl23!') {
       sessionStorage.setItem('admin_authenticated', 'true')
       setIsAuthenticated(true)
     } else {
@@ -69,7 +69,7 @@ export default function AdminPage() {
                 name="username"
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="admin"
+                placeholder="아이디 입력"
               />
             </div>
             <div className="mb-6">

@@ -7,9 +7,9 @@ export async function POST(request: NextRequest) {
   try {
     const { applicationData } = await request.json()
     
-    const notificationEmail = process.env.NOTIFICATION_EMAIL
+    const notificationEmail = 'seochaetong1@gmail.com'
     
-    if (!notificationEmail || !process.env.RESEND_API_KEY || !resend) {
+    if (!process.env.RESEND_API_KEY || !resend) {
       console.error('Email configuration not complete')
       return NextResponse.json({ success: true, message: 'Email not configured, but application saved' })
     }
