@@ -1,4 +1,4 @@
-import { Building2, TrendingUp, Users, FileCheck, Zap, Target, Award, Shield } from 'lucide-react'
+import { TrendingUp, Users, Zap, Target, Award } from 'lucide-react'
 
 const features = [
   {

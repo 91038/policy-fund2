@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle, Sparkles, TrendingUp } from 'lucide-react'
+import { ArrowRight, Sparkles, TrendingUp } from 'lucide-react'
 
 interface HeroProps {
   onConsultClick: () => void

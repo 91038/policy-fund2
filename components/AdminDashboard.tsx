@@ -56,7 +56,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       let errorMessage = '데이터를 불러오는 중 오류가 발생했습니다.'
       
       if (error && typeof error === 'object') {
-        const err = error as any
+        const err = error as { message?: string; details?: string; code?: string }
         if (err.message) {
           errorMessage = `데이터베이스 오류: ${err.message}`
         }
