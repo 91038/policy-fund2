@@ -18,7 +18,9 @@ NEXT_PUBLIC_SUPABASE_URL=https://xodlmdlcelhufeblrfqh.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvZGxtZGxjZWxodWZlYmxyZnFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyODM0MDgsImV4cCI6MjA2OTg1OTQwOH0.sLEG4gTfLo_2D81slb4uFvKWaSvpZixBZJd87gvhBaE
 
 # 이메일 설정
-NOTIFICATION_EMAIL=qkrtmdska2642@gmail.com
+EMAIL_TO=seochaetong1@gmail.com
+EMAIL_FROM=seochaetong1@gmail.com
+GMAIL_APP_PASSWORD=dgyirvjsocfnhtfz
 RESEND_API_KEY=re_WoUSGUZ7_3DGJznrNSfpYxBkig4JCwkq9
 ```
 
@@ -27,9 +29,9 @@ RESEND_API_KEY=re_WoUSGUZ7_3DGJznrNSfpYxBkig4JCwkq9
 # 사이트 URL (이메일 링크용)
 NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
 
-# 관리자 인증 (필요시 변경)
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=admin123
+# 관리자 인증
+ADMIN_USERNAME=qkrtmdska23
+ADMIN_PASSWORD=akfqhwl23!
 ```
 
 ### 3. 환경변수 추가 방법
@@ -64,6 +66,6 @@ ADMIN_PASSWORD=admin123
 ## 🔗 링크
 - **메인 페이지**: https://your-domain.vercel.app
 - **관리자 페이지**: https://your-domain.vercel.app/admin
-- **로그인**: admin / admin123
+- **로그인**: qkrtmdska23 / akfqhwl23!
 
 배포 완료 후 URL을 확인하시고 모든 기능이 정상 작동하는지 테스트해주세요!

@@ -25,18 +25,32 @@ export default function AdminPage() {
     setLoading(false)
   }
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
-    // 환경 변수와 비교 (실제 운영시에는 더 안전한 방법 사용)
-    if (username === 'qkrtmdska23' && password === 'akfqhwl23!') {
-      sessionStorage.setItem('admin_authenticated', 'true')
-      setIsAuthenticated(true)
-    } else {
-      alert('아이디 또는 비밀번호가 올바르지 않습니다.')
+    try {
+      const response = await fetch('/api/auth/admin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        sessionStorage.setItem('admin_authenticated', 'true')
+        setIsAuthenticated(true)
+      } else {
+        alert(result.message || '아이디 또는 비밀번호가 올바르지 않습니다.')
+      }
+    } catch (error) {
+      console.error('Login error:', error)
+      alert('로그인 처리 중 오류가 발생했습니다.')
     }
   }
 
