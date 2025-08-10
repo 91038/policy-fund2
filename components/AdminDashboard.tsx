@@ -24,6 +24,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const fetchApplications = async () => {
     setLoading(true)
     try {
+      console.log('Fetching applications from Supabase...')
+      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+      console.log('Filter:', filter)
+      
       let query = supabase.from('policy_fund_applications').select('*').order('created_at', { ascending: false })
       
       if (filter !== 'all') {
@@ -32,11 +36,39 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
       const { data, error } = await query
       
-      if (error) throw error
+      console.log('Supabase response:', { data, error })
+      
+      if (error) {
+        console.error('Supabase error:', error)
+        throw error
+      }
+      
+      console.log('Applications fetched:', data?.length || 0)
       setApplications(data || [])
+      
+      if (!data || data.length === 0) {
+        console.log('No applications found in database')
+      }
     } catch (error) {
       console.error('Error fetching applications:', error)
-      alert('데이터를 불러오는 중 오류가 발생했습니다.')
+      
+      // 에러 타입에 따른 상세 메시지
+      let errorMessage = '데이터를 불러오는 중 오류가 발생했습니다.'
+      
+      if (error && typeof error === 'object') {
+        const err = error as any
+        if (err.message) {
+          errorMessage = `데이터베이스 오류: ${err.message}`
+        }
+        if (err.details) {
+          console.error('Error details:', err.details)
+        }
+        if (err.code) {
+          console.error('Error code:', err.code)
+        }
+      }
+      
+      alert(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -73,6 +105,42 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     } catch (error) {
       console.error('Error updating notes:', error)
       alert('메모 저장 중 오류가 발생했습니다.')
+    }
+  }
+
+  const testSupabaseConnection = async () => {
+    try {
+      console.log('Testing Supabase connection...')
+      
+      // 환경변수 확인
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      
+      console.log('Environment check:', {
+        hasUrl: !!supabaseUrl,
+        hasKey: !!supabaseKey,
+        url: supabaseUrl
+      })
+      
+      if (!supabaseUrl || !supabaseKey) {
+        alert('Supabase 환경변수가 설정되지 않았습니다.\n\nNEXT_PUBLIC_SUPABASE_URL: ' + (supabaseUrl ? 'OK' : 'MISSING') + '\nNEXT_PUBLIC_SUPABASE_ANON_KEY: ' + (supabaseKey ? 'OK' : 'MISSING'))
+        return
+      }
+      
+      // 테이블 존재 확인
+      const { data, error } = await supabase.from('policy_fund_applications').select('count', { count: 'exact' }).limit(1)
+      
+      if (error) {
+        console.error('Supabase connection error:', error)
+        alert(`Supabase 연결 실패:\n${error.message}\n\n테이블이 존재하지 않거나 권한이 없을 수 있습니다.`)
+        return
+      }
+      
+      alert(`Supabase 연결 성공!\n테이블 총 레코드 수: ${data?.length || 0}개`)
+      
+    } catch (error) {
+      console.error('Connection test error:', error)
+      alert(`연결 테스트 실패:\n${error}`)
     }
   }
 
@@ -198,6 +266,12 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <Download className="w-4 h-4" />
               CSV 다운로드
             </button>
+            <button
+              onClick={testSupabaseConnection}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              🔍 연결 테스트
+            </button>
           </div>
 
           {loading ? (
@@ -268,9 +342,20 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   ))}
                 </tbody>
               </table>
-              {filteredApplications.length === 0 && (
-                <div className="text-center py-8 text-gray-500">
-                  검색 결과가 없습니다.
+              {filteredApplications.length === 0 && !loading && (
+                <div className="text-center py-8">
+                  {applications.length === 0 ? (
+                    <div>
+                      <div className="text-gray-500 mb-4">데이터베이스에 신청 데이터가 없습니다.</div>
+                      <div className="text-sm text-gray-400">
+                        메인 페이지에서 신청폼을 작성하면 여기에 표시됩니다.
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-gray-500">
+                      검색 결과가 없습니다.
+                    </div>
+                  )}
                 </div>
               )}
             </div>

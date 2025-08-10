@@ -96,13 +96,6 @@ export default function AdminPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h1 className="text-2xl font-bold mb-6 text-center">관리자 로그인</h1>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-            <p className="text-sm text-green-800">
-              <strong>관리자 계정:</strong><br />
-              아이디: qkrtmdska23<br />
-              비밀번호: akfqhwl23!
-            </p>
-          </div>
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -111,7 +104,6 @@ export default function AdminPage() {
               <input
                 type="text"
                 name="username"
-                defaultValue="qkrtmdska23"
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="아이디 입력"
@@ -124,7 +116,6 @@ export default function AdminPage() {
               <input
                 type="password"
                 name="password"
-                defaultValue="akfqhwl23!"
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="비밀번호 입력"
