@@ -102,9 +102,10 @@ export async function POST(request: NextRequest) {
       
       // Resend API 에러 상세 정보
       const errorDetails = {
-        message: error.message || error.toString(),
+        errorMessage: error.message || error.toString(),
         name: error.name,
-        ...error
+        statusCode: 'statusCode' in error ? (error as {statusCode: number}).statusCode : undefined,
+        type: typeof error
       }
       
       return NextResponse.json({ 

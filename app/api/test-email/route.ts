@@ -31,10 +31,10 @@ export async function GET() {
         success: false,
         error: 'Failed to send test email',
         details: {
-          message: error.message,
+          errorMessage: error.message,
           name: error.name,
-          statusCode: (error as any).statusCode,
-          ...error
+          statusCode: 'statusCode' in error ? (error as {statusCode: number}).statusCode : undefined,
+          type: typeof error
         },
         apiKeyPresent: !!apiKey,
         apiKeyLength: apiKey.length
@@ -47,14 +47,14 @@ export async function GET() {
       data: data
     })
     
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json({
       success: false,
       error: 'Exception occurred',
       details: {
-        message: error.message,
-        stack: error.stack,
-        name: error.name
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+        name: error instanceof Error ? error.name : 'Unknown'
       }
     })
   }
