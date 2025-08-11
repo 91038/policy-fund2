@@ -1,0 +1,4 @@
+# Vercel ignore file
+.env.local
+test_form_submission.js
+*.log
