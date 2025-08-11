@@ -99,10 +99,20 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Failed to send email:', error)
       console.error('Error details:', JSON.stringify(error, null, 2))
+      
+      // Resend API 에러 상세 정보
+      const errorDetails = {
+        message: error.message || error.toString(),
+        name: error.name,
+        ...error
+      }
+      
       return NextResponse.json({ 
         success: false, 
         error: 'Failed to send email',
-        details: error.message || 'Unknown error'
+        details: errorDetails,
+        apiKey: process.env.RESEND_API_KEY ? 'Set' : 'Not Set',
+        to: notificationEmail
       }, { status: 500 })
     }
 
