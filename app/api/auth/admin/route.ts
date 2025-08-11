@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     console.log('Login attempt received:', { username })
     
     // 환경변수에서 어드민 계정 정보 가져오기 (폴백 값 포함)
-    const adminUsername = process.env.ADMIN_USERNAME || 'qkrtmdska23'
+    const adminUsername = process.env.ADMIN_USERNAME || 'qkrtmdska24'
     const adminPassword = process.env.ADMIN_PASSWORD || 'akfqhwl23!'
     
     console.log('Environment variables check:', {

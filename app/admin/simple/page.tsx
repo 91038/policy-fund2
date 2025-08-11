@@ -34,7 +34,7 @@ export default function SimpleAdminPage() {
     console.log('Simple login attempt:', { username, password })
 
     // 간단한 하드코딩된 인증 (환경변수 없이)
-    if (username === 'qkrtmdska23' && password === 'akfqhwl23!') {
+    if (username === 'qkrtmdska24' && password === 'akfqhwl23!') {
       console.log('Simple login successful')
       sessionStorage.setItem('simple_admin_authenticated', 'true')
       setIsAuthenticated(true)

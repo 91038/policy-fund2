@@ -7,7 +7,7 @@ export async function GET() {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'SET' : 'NOT SET',
     resendApiKey: process.env.RESEND_API_KEY ? 'SET' : 'NOT SET',
     nodeEnv: process.env.NODE_ENV,
-    actualUsername: process.env.ADMIN_USERNAME || 'DEFAULT: qkrtmdska23',
+    actualUsername: process.env.ADMIN_USERNAME || 'DEFAULT: qkrtmdska24',
     // 보안을 위해 실제 비밀번호는 표시하지 않음
   })
 }
