@@ -86,8 +86,11 @@ export async function POST(request: NextRequest) {
     `
 
     // Resend를 사용하여 실제 이메일 전송
+    console.log('Attempting to send email to:', notificationEmail)
+    console.log('Using Resend API Key:', process.env.RESEND_API_KEY ? 'Present' : 'Missing')
+    
     const { data, error } = await resend.emails.send({
-      from: 'Policy Fund <noreply@resend.dev>',
+      from: 'Policy Fund <onboarding@resend.dev>',
       to: [notificationEmail],
       subject: `새로운 정책자금 상담 신청 - ${applicationData.name}`,
       html: emailContent,
@@ -95,7 +98,12 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Failed to send email:', error)
-      return NextResponse.json({ success: false, error: 'Failed to send email' }, { status: 500 })
+      console.error('Error details:', JSON.stringify(error, null, 2))
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Failed to send email',
+        details: error.message || 'Unknown error'
+      }, { status: 500 })
     }
 
     console.log('Email sent successfully:', data)
