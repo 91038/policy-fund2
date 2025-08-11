@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const { applicationData } = await request.json()
     
     // 환경변수에서 이메일 주소 가져오기
-    const notificationEmail = process.env.EMAIL_TO || process.env.EMAIL_FROM || 'seochaetong1@gmail.com'
+    const notificationEmail = process.env.EMAIL_TO || 'qkrtmdska2642@gmail.com'
     
     if (!process.env.RESEND_API_KEY || !resend) {
       console.error('Email configuration not complete')

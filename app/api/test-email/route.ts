@@ -17,7 +17,7 @@ export async function GET() {
     // 간단한 테스트 이메일
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'seochaetong1@gmail.com',
+      to: 'qkrtmdska2642@gmail.com',
       subject: '테스트 이메일 - 정책자금 시스템',
       html: `
         <h1>테스트 이메일</h1>
