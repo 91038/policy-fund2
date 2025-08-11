@@ -1,15 +1,15 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import Hero from '@/components/Hero'
-import Features from '@/components/Features'
-import Stats from '@/components/Stats'
-import SuccessCases from '@/components/SuccessCases'
-import Process from '@/components/Process'
-import Footer from '@/components/Footer'
-import FloatingCTA from '@/components/FloatingCTA'
+import Hero from '../components/Hero'
+import Features from '../components/Features'
+import Stats from '../components/Stats'
+import SuccessCases from '../components/SuccessCases'
+import Process from '../components/Process'
+import Footer from '../components/Footer'
+import FloatingCTA from '../components/FloatingCTA'
 
-const ApplicationForm = dynamic(() => import('@/components/ApplicationForm'), {
+const ApplicationForm = dynamic(() => import('../components/ApplicationForm'), {
   ssr: false
 })
 

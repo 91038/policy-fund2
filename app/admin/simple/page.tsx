@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
-const AdminDashboard = dynamic(() => import('@/components/AdminDashboard'), {
+const AdminDashboard = dynamic(() => import('../../../components/AdminDashboard'), {
   ssr: false
 })
 

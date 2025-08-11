@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
-import { Application } from '@/lib/supabase'
+import { supabase } from '../lib/supabase'
+import { Application } from '../lib/supabase'
 import { LogOut, Download, Search, Phone, Mail } from 'lucide-react'
 
 interface AdminDashboardProps {
